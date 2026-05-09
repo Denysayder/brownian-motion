@@ -1,0 +1,6 @@
+[CONFIG] mode=deadlock_fixed, grid=3x3, n_particles=60, steps=500, snapshot_every=500, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[INIT]   Initial total particles in crystal: 60
+[RUN]    starting 60 threads in DEADLOCK_FIXED mode (global lock ordering)
+[CONFIG] mode=deadlock_fixed, grid=3x3, n_particles=60, steps=500, snapshot_every=500, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[RESULT] Initial: 60 | Final: 60 | Diff: +0  ✓
+[TIME]   Wall: 0.041s | Snapshots collected: 2

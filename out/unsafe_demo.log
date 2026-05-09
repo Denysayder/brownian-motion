@@ -1,0 +1,6 @@
+[CONFIG] mode=unsafe, grid=6x6, n_particles=200, steps=200, snapshot_every=200, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[INIT]   Initial total particles in crystal: 200
+[RUN]    starting 200 UNSAFE threads (race condition demo)
+[CONFIG] mode=unsafe, grid=6x6, n_particles=200, steps=200, snapshot_every=200, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[RESULT] Initial: 200 | Final: 843 | Diff: +643  ✗ (НЕ ЗБЕРІГАЄТЬСЯ — race condition!)
+[TIME]   Wall: 0.185s | Snapshots collected: 2

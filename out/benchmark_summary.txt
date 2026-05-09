@@ -1,0 +1,63 @@
+======================================================================
+ПОВНИЙ БЕНЧМАРК — Броунівський рух
+Час запуску: 2026-05-09 17:30:25
+======================================================================
+
+[perf_vs_n]
+   safe_per_cell  N=   200  t=  0.07s  conserved=True
+   safe_per_cell  N=   500  t=  0.18s  conserved=True
+   safe_per_cell  N=  1000  t=  0.80s  conserved=True
+   safe_per_cell  N=  2000  t=  3.09s  conserved=True
+          pooled  N=   200  t=  0.08s  conserved=True
+          pooled  N=   500  t=  0.15s  conserved=True
+          pooled  N=  1000  t=  0.28s  conserved=True
+          pooled  N=  2000  t=  0.54s  conserved=True
+          pooled  N=  4000  t=  1.07s  conserved=True
+          pooled  N= 10000  t=  2.70s  conserved=True
+          pooled  N= 20000  t=  5.39s  conserved=True
+          pooled  N= 50000  t= 13.70s  conserved=True
+
+[perf_vs_workers]
+  workers=  1  t=  1.35s
+  workers=  2  t=  1.32s
+  workers=  4  t=  1.33s
+  workers=  8  t=  1.36s
+  workers= 16  t=  1.40s
+  workers= 32  t=  1.42s
+
+[grid_size_effect]
+  grid= 10x10   t=  0.51s
+  grid= 20x20   t=  0.54s
+  grid= 40x40   t=  0.55s
+  grid= 80x80   t=  0.56s
+  grid=160x160  t=  0.56s
+
+[density_effect]
+  density= 0.05  t=  0.04s  conserved=True
+  density=  0.1  t=  0.06s  conserved=True
+  density= 0.25  t=  0.13s  conserved=True
+  density=  0.5  t=  0.23s  conserved=True
+  density=  1.0  t=  0.44s  conserved=True
+  density=  2.0  t=  0.86s  conserved=True
+  density=  4.0  t=  1.72s  conserved=True
+
+[diffusion_law]
+  лінійна підгонка ⟨r²⟩ vs t: slope=1.0068, intercept=-3.72
+
+[race_condition_demo]
+  UNSAFE  : initial=600 final=8127 diff=+7527   ← очікувано: diff < 0 (втрата частинок)
+  SAFE    : initial=600 final=600 diff=+0   ← очікувано: diff = 0 (інваріант збережено)
+
+[deadlock_demo]
+  deadlock_demo : detected=True time=7.12s diff=+0
+  deadlock_fixed: detected=False time=0.07s diff=+0
+
+[SUMMARY]
+  Графіки збережено у out/:
+    - out/perf_vs_n.png
+    - out/perf_vs_workers.png
+    - out/grid_size_effect.png
+    - out/density_effect.png
+    - out/drift_demo.png
+    - out/diffusion_law.png
+    - out/diffusion_initial_vs_final.png

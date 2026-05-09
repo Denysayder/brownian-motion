@@ -1,0 +1,125 @@
+======================================================================
+ПОВНИЙ БЕНЧМАРК — Броунівський рух
+Час запуску: 2026-05-09 17:06:38
+======================================================================
+
+=== BENCH: perf vs N (1 thread per atom vs pooled) ===
+  safe_per_cell  N=   200 →   0.07s  (init=200, final=200)
+  safe_per_cell  N=   500 →   0.18s  (init=500, final=500)
+  safe_per_cell  N=  1000 →   0.71s  (init=1000, final=1000)
+  safe_per_cell  N=  2000 →   1.16s  (init=2000, final=2000)
+  safe_per_cell  N=  4000 → FAILED: RuntimeError("can't start new thread")  ← ОС-ліміт потоків ('1 потік на атом' не масштабується)
+  pooled         N=   200 →   0.08s  (init=200, final=200)
+  pooled         N=   500 →   0.16s  (init=500, final=500)
+  pooled         N=  1000 →   0.35s  (init=1000, final=1000)
+  pooled         N=  2000 →   0.56s  (init=2000, final=2000)
+  pooled         N=  4000 →   1.10s  (init=4000, final=4000)
+  pooled         N= 10000 →   2.72s  (init=10000, final=10000)
+  pooled         N= 20000 →   5.50s  (init=20000, final=20000)
+  pooled         N= 50000 →  13.92s  (init=50000, final=50000)
+[ANL]    saved out/perf_vs_n.png
+
+[perf_vs_n]
+   safe_per_cell  N=   200  t=  0.07s  conserved=True
+   safe_per_cell  N=   500  t=  0.18s  conserved=True
+   safe_per_cell  N=  1000  t=  0.71s  conserved=True
+   safe_per_cell  N=  2000  t=  1.16s  conserved=True
+          pooled  N=   200  t=  0.08s  conserved=True
+          pooled  N=   500  t=  0.16s  conserved=True
+          pooled  N=  1000  t=  0.35s  conserved=True
+          pooled  N=  2000  t=  0.56s  conserved=True
+          pooled  N=  4000  t=  1.10s  conserved=True
+          pooled  N= 10000  t=  2.72s  conserved=True
+          pooled  N= 20000  t=  5.50s  conserved=True
+          pooled  N= 50000  t= 13.92s  conserved=True
+
+=== BENCH: perf vs workers (pooled) ===
+  workers=  1 →   1.36s  (init=5000, final=5000)
+  workers=  2 →   1.36s  (init=5000, final=5000)
+  workers=  4 →   1.38s  (init=5000, final=5000)
+  workers=  8 →   1.39s  (init=5000, final=5000)
+  workers= 16 →   1.41s  (init=5000, final=5000)
+  workers= 32 →   1.45s  (init=5000, final=5000)
+[ANL]    saved out/perf_vs_workers.png
+
+[perf_vs_workers]
+  workers=  1  t=  1.36s
+  workers=  2  t=  1.36s
+  workers=  4  t=  1.38s
+  workers=  8  t=  1.39s
+  workers= 16  t=  1.41s
+  workers= 32  t=  1.45s
+
+=== BENCH: perf vs grid size (pooled) ===
+  grid= 10x10  (density=20.00) →   0.53s
+  grid= 20x20  (density=5.00) →   0.56s
+  grid= 40x40  (density=1.25) →   0.57s
+  grid= 80x80  (density=0.31) →   0.57s
+  grid=160x160 (density=0.08) →   0.58s
+[ANL]    saved out/grid_size_effect.png
+
+[grid_size_effect]
+  grid= 10x10   t=  0.53s
+  grid= 20x20   t=  0.56s
+  grid= 40x40   t=  0.57s
+  grid= 80x80   t=  0.57s
+  grid=160x160  t=  0.58s
+
+=== BENCH: density effect (pooled) ===
+  density= 0.05 → N=   80  time=  0.04s  conserved=True
+  density=  0.1 → N=  160  time=  0.07s  conserved=True
+  density= 0.25 → N=  400  time=  0.13s  conserved=True
+  density=  0.5 → N=  800  time=  0.24s  conserved=True
+  density=  1.0 → N= 1600  time=  0.46s  conserved=True
+  density=  2.0 → N= 3200  time=  0.89s  conserved=True
+  density=  4.0 → N= 6400  time=  1.76s  conserved=True
+[ANL]    saved out/density_effect.png
+
+[density_effect]
+  density= 0.05  t=  0.04s  conserved=True
+  density=  0.1  t=  0.07s  conserved=True
+  density= 0.25  t=  0.13s  conserved=True
+  density=  0.5  t=  0.24s  conserved=True
+  density=  1.0  t=  0.46s  conserved=True
+  density=  2.0  t=  0.89s  conserved=True
+  density=  4.0  t=  1.76s  conserved=True
+
+=== DEMO: drift (p_right > p_left, p_down > p_up) ===
+  initial=2500, final=2500, time=0.53s
+[VIS]    saved figure: out/drift_demo.png
+
+=== DEMO: diffusion law (⟨r²⟩ ∝ t) ===
+  initial=2000, final=2000, time=1.14s
+[VIS]    saved figure: out/diffusion_law.png
+[VIS]    saved figure: out/diffusion_initial_vs_final.png
+
+[diffusion_law]
+  лінійна підгонка ⟨r²⟩ vs t: slope=1.0068, intercept=-3.72
+
+=== DEMO: race condition ===
+  UNSAFE: init=600 final=8023 diff=7423 time=2.32s
+  SAFE  : init=600 final=600 diff=0 time=0.54s
+
+[race_condition_demo]
+  UNSAFE  : initial=600 final=8023 diff=+7423   ← очікувано: diff < 0 (втрата частинок)
+  SAFE    : initial=600 final=600 diff=+0   ← очікувано: diff = 0 (інваріант збережено)
+
+=== DEMO: deadlock ===
+  deadlock_demo: detected=True time=7.02s diff=+0
+  deadlock_fixed: detected=False time=0.12s diff=+0
+
+[deadlock_demo]
+  deadlock_demo : detected=True time=7.02s diff=+0
+  deadlock_fixed: detected=False time=0.12s diff=+0
+
+[SUMMARY]
+  Графіки збережено у out/:
+    - out/perf_vs_n.png
+    - out/perf_vs_workers.png
+    - out/grid_size_effect.png
+    - out/density_effect.png
+    - out/drift_demo.png
+    - out/diffusion_law.png
+    - out/diffusion_initial_vs_final.png
+
+[ANL]    summary saved → out/benchmark_summary.txt

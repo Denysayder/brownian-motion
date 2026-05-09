@@ -1,0 +1,6 @@
+[CONFIG] mode=safe_per_cell, grid=6x6, n_particles=200, steps=200, snapshot_every=200, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[INIT]   Initial total particles in crystal: 200
+[RUN]    starting 200 threads (1 thread per atom)
+[CONFIG] mode=safe_per_cell, grid=6x6, n_particles=200, steps=200, snapshot_every=200, p=(↑0.25 ↓0.25 ←0.25 →0.25), seed=42, workers=8
+[RESULT] Initial: 200 | Final: 200 | Diff: +0  ✓
+[TIME]   Wall: 0.067s | Snapshots collected: 2
